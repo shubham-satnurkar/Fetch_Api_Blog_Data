@@ -16,9 +16,14 @@ const fetchData = (data) => {
         let card = document.createElement("div")
         card.classList.add("card");
 
+        
         // Card-body inside Card
         let cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
+
+        // Main Id
+        let dataId = data[i].userId;
+        
 
         // User Id
         let userId = document.createElement("h2");
@@ -69,7 +74,10 @@ const commentsData = (comments) =>{
          // Card-body inside Card
          let cardBody = document.createElement("div");
          cardBody.classList.add("card-body");
- 
+        
+        //main id
+        let commentsId = comments[i].userId;  
+
          // User Id
          let userId = document.createElement("h2");
          userId.classList.add("card-title");
@@ -102,7 +110,15 @@ const commentsData = (comments) =>{
          cardBody.appendChild(userBody);
  
          card.appendChild(cardBody)
-         commentsCard.appendChild(card)
+         
+         if(fetchData.dataId == commentsData.commentsId){
+            return commentsCard.appendChild(card)
+         }
+         else{
+            return false
+         }
+        
+         
     }
 }
 

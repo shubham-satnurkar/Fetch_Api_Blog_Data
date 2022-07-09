@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signle Post Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center py-4 text-decoration-underline">
+                <h1>Single Blog Post</h1>
+            </div>
+            <div class="col-10 mx-auto" id="showData">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdeli vr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const api_url = "https://jsonplaceholder.typicode.com/posts/1";
+        fetch(api_url)
+            .then((res) => res.json())
+            .then(postData => {
+                fetchData(postData);
+                console.log(postData)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+        const showData = document.getElementById('showData');
+        const fetchData = (data) => {
+            for (let i = 0; i < data.length; i++) {
+                // Card
+                let card = document.createElement("div")
+                card.classList.add("card");
+
+                // Card-body inside Card
+                let cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+
+                // User Id
+                let userId = document.createElement("h2");
+                userId.classList.add("card-title");
+
+                // Card-title inside card-body
+                let userTitle = document.createElement("h4");
+
+                // card-text inside card-body
+                let userBody = document.createElement("p");
+
+
+                userId.innerHTML = data[i].id;
+                cardBody.appendChild(userId);
+
+                userTitle.innerHTML = data[i].title;
+                userTitle.classList.add("card-title");
+                cardBody.appendChild(userTitle);
+
+                userBody.innerHTML = data[i].body;
+                userBody.classList.add("card-text");
+                cardBody.appendChild(userBody);
+
+                card.appendChild(cardBody)
+                showData.appendChild(card)
+            }
+        }
+    </script>
+</body>
+
+</html>
